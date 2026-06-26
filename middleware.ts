@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
         getAll() {
           return request.cookies.getAll()
         },
-        setAll(cookiesToSet: { name: string; value: string; options?: any }[]) {
+        setAll(cookiesToSet: Array<{ name: string; value: string; options?: any }>) {
           // set cookies ke request
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value)
@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options)
           )
-        }
+        },
       },
     }
   )
