@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface-soft text-ink font-body antialiased;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* ── Card ─────────────────────────────────── */
+  .card {
+    @apply bg-surface-card rounded-2xl shadow-card border border-primary-100/50;
+  }
+
+  /* ── Gradient Text ────────────────────────── */
+  .gradient-text {
+    @apply bg-rose-gradient bg-clip-text text-transparent;
+  }
+
+  /* ── Bottom Nav ───────────────────────────── */
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-white border-t border-primary-100
+           flex items-center justify-around px-2 py-2 z-50 
+           shadow-[0_-4px_20px_rgba(255,107,157,0.12)];
+    padding-bottom: env(safe-area-inset-bottom, 8px);
+  }
+
+  .nav-item {
+    @apply flex flex-col items-center gap-0.5 px-3 py-1 rounded-xl
+           transition-all duration-200 cursor-pointer select-none;
+  }
+
+  .nav-item.active {
+    @apply text-primary-400;
+  }
+
+  .nav-item:not(.active) {
+    @apply text-ink-light;
+  }
+
+  /* ── Scrollbar ────────────────────────────── */
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* ── Input ────────────────────────────────── */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-primary-100
+           bg-white text-ink placeholder-ink-light
+           focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-primary-300
+           transition-all duration-200 text-sm;
+  }
+
+  /* ── Btn ──────────────────────────────────── */
+  .btn-primary {
+    @apply bg-rose-gradient text-white font-semibold px-6 py-3
+           rounded-xl shadow-rose-sm hover:shadow-rose-md
+           active:scale-95 transition-all duration-200
+           flex items-center justify-center gap-2 text-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-white border-2 border-primary-300 text-primary-400 font-semibold
+           px-6 py-3 rounded-xl active:scale-95 transition-all duration-200
+           flex items-center justify-center gap-2 text-sm hover:bg-primary-50;
+  }
+
+  .btn-ghost {
+    @apply text-primary-400 font-medium px-4 py-2 rounded-lg
+           hover:bg-primary-50 active:scale-95 transition-all duration-200
+           flex items-center gap-2 text-sm;
+  }
+
+  .btn-danger {
+    @apply bg-red-50 text-red-500 font-medium px-4 py-2 rounded-lg
+           hover:bg-red-100 active:scale-95 transition-all duration-200
+           flex items-center gap-2 text-sm;
+  }
+
+  /* ── Tag / Badge ──────────────────────────── */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-rose {
+    @apply badge bg-primary-100 text-primary-500;
+  }
+
+  .badge-gold {
+    @apply badge bg-amber-100 text-amber-600;
+  }
+
+  /* ── Page Header ──────────────────────────── */
+  .page-header {
+    @apply sticky top-0 z-40 bg-white/80 backdrop-blur-md
+           border-b border-primary-100/60 px-4 py-3
+           flex items-center gap-3;
+  }
+
+  /* ── Section ──────────────────────────────── */
+  .section-title {
+    @apply font-display text-lg font-semibold text-ink mb-3;
+  }
+}
+
+/* ── Floating Hearts ──────────────────────────── */
+@keyframes heartFloat {
+  0%   { transform: translateY(0) scale(1); opacity: 0.8; }
+  50%  { transform: translateY(-40px) scale(1.1); opacity: 0.6; }
+  100% { transform: translateY(-80px) scale(0.8); opacity: 0; }
+}
+
+.heart-float {
+  animation: heartFloat 4s ease-out infinite;
+}
+
+/* ── Mood Pill ────────────────────────────────── */
+.mood-pill {
+  @apply px-4 py-2 rounded-full text-sm font-medium
+         border-2 transition-all duration-200 cursor-pointer select-none
+         active:scale-95 whitespace-nowrap;
+}
+
+.mood-pill.selected {
+  @apply bg-rose-gradient text-white border-transparent shadow-rose-sm;
+}
+
+.mood-pill:not(.selected) {
+  @apply border-primary-200 text-primary-400 bg-white hover:bg-primary-50;
+}
+
+/* ── Confetti / Success ───────────────────────── */
+@keyframes bounce-in {
+  0%   { transform: scale(0.3); opacity: 0; }
+  60%  { transform: scale(1.1); }
+  80%  { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.bounce-in { animation: bounce-in 0.5s ease-out; }
+
+/* ── Shimmer loading ──────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #ffe1ec 25%, #fff0f5 50%, #ffe1ec 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── Mobile safe area padding ─────────────────── */
+.safe-pb {
+  padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+}

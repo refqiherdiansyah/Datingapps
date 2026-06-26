@@ -1,0 +1,26 @@
+{
+  "name": "Dating Planner",
+  "short_name": "DatingApp",
+  "description": "Plan your perfect dates together 💕",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#FF6B9D",
+  "background_color": "#FFF5F8",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "social"],
+  "lang": "id"
+}
